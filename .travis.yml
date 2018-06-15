@@ -20,6 +20,13 @@ install:
  - docker ps -a 
 
 before_script:
+ - sudo docker exec -it ansible /bin/bash -c ""
+
+ - sudo docker exec -it ansible /bin/bash -c "systemctl enable sshd"
+ - sudo docker exec -it ansible /bin/bash -c "systemctl start sshd"
+ - sudo docker exec -it ansible /bin/bash -c "ssh-keygen -b 4096 -t rsa -f ~/.ssh/id_rsa -N """
+ - sudo docker exec -it ansible /bin/bash -c "cat ~/.ssh/id_rsa.pub > ~/.ssh/authorized_keys"
+ - sudo docker exec -it ansible /bin/bash -c "ssh -oStrictHostKeyChecking=no -i .ssh/id_rsa localhost exit"
  - sudo docker exec -it ansible /bin/bash -c "whoami"
  - sudo docker exec -it ansible /bin/bash -c "pwd"
  - sudo docker exec -it ansible /bin/bash -c "ls /root/"
