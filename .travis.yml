@@ -20,8 +20,6 @@ install:
  - docker ps -a 
 
 before_script:
- - sudo docker exec -it ansible /bin/bash -c ""
-
  - sudo docker exec -it ansible /bin/bash -c "systemctl enable sshd"
  - sudo docker exec -it ansible /bin/bash -c "systemctl start sshd"
  - sudo docker exec -it ansible /bin/bash -c "ssh-keygen -b 4096 -t rsa -f ~/.ssh/id_rsa -N ''"
