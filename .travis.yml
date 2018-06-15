@@ -27,6 +27,7 @@ before_script:
 
 script:
  # Run tests in Container
+ - sudo docker exec -it ansible /bin/bash -c "cat /etc/ansible/hosts"
  - sudo docker exec -it ansible /bin/bash -c "ansible -m ping localhost --one-line"
  - sudo docker exec -it ansible /bin/bash -c "ansible -m ping all --one-line"
 
