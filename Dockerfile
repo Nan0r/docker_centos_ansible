@@ -5,5 +5,5 @@ RUN yum clean all && \
     yum -y install epel-release && \
     yum -y install ansible 
 RUN echo '[local]\nlocalhost\n' > /etc/ansible/hosts
-WORKDIR /opt/ansible/ansible
+WORKDIR /root/
 ENV PATH /bin:/usr/bin:/sbin:/usr/sbin
