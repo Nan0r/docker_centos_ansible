@@ -16,16 +16,18 @@ before_install:
   - sudo docker pull nan0r/docker_centos_ansible
 
 install:
- - pwd
  - docker run --privileged -d --name ansible docker.io/nan0r/docker_centos_ansible /usr/sbin/init
  - docker ps -a 
 
 before_script:
+ - sudo docker exec -it ansible /bin/bash -c "whoami"
+ - sudo docker exec -it ansible /bin/bash -c "pwd"
+ - sudo docker exec -it ansible /bin/bash -c "ls /root/"
  - sudo docker logs ansible
- - sudo docker exec -it ansible ls -als /root/docker_centos_ansible/
 
 script:
  # Run tests in Container
+ - sudo docker exec -it ansible /bin/bash -c "ansible -m ping localhost --one-line"
  - sudo docker exec -it ansible /bin/bash -c "ansible -m ping all --one-line"
 
 after_script:
