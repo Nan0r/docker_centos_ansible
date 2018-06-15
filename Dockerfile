@@ -5,6 +5,7 @@ RUN yum clean all && \
     yum -y install epel-release && \
     yum -y install ansible && \
     yum -y install openssh-server openssh-clients
-RUN echo 'localhost' >> /etc/ansible/hosts
+RUN echo '[local]' >> /etc/ansible/hosts
+RUN echo 'localhost ansible_connection=local' >> /etc/ansible/hosts
 WORKDIR /root/
 ENV PATH /bin:/usr/bin:/sbin:/usr/sbin
